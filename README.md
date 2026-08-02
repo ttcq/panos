@@ -1,2 +1,2 @@
-# ttcq.github.io-panos
+# ttcq.github.io/panos
 Panoramas
