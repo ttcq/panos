@@ -1,0 +1,25 @@
+{
+  "campLight01": {
+    "title": "Camp Lantern #A",
+    "image": "images/campLight01.jpg",
+    "location": "Camp High Sierra",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson",
+    "hfov": 100,
+    "pitch": 0,
+    "yaw": 0
+  },
+
+  "campLight02": {
+    "title": "Camp Lantern #B",
+    "image": "images/campLight02.jpg",
+    "location": "Camp High Sierra",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson",
+    "hfov": 100,
+    "pitch": 0,
+    "yaw": 0
+  }
+}
