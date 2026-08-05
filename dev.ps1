@@ -6,47 +6,15 @@ Clear-Host
 
 Write-Host ""
 Write-Host "==========================================" -ForegroundColor Cyan
-Write-Host "         PANOS DEPLOY TOOL" -ForegroundColor Cyan
+Write-Host "      PANOS DEVELOPMENT TOOL" -ForegroundColor Cyan
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host ""
 
-git status
+#--------------------------------------------------
+# Push to GitHub
+#--------------------------------------------------
 
-$changes = git status --porcelain
-
-if (-not $changes) {
-
-    Write-Host ""
-    Write-Host "Nothing to commit." -ForegroundColor Yellow
-    exit
-
-}
-
-if ([string]::IsNullOrWhiteSpace($Message)) {
-
-    $Message = Read-Host "Commit message"
-
-}
-
-Write-Host ""
-Write-Host "Adding files..." -ForegroundColor Yellow
-git add .
-
-Write-Host ""
-Write-Host "Committing..." -ForegroundColor Yellow
-git commit -m $Message
-
-if ($LASTEXITCODE -ne 0) {
-
-    Write-Host ""
-    Write-Host "Commit failed." -ForegroundColor Red
-    exit
-
-}
-
-Write-Host ""
-Write-Host "Pushing..." -ForegroundColor Yellow
-git push
+& .\push.ps1 $Message
 
 if ($LASTEXITCODE -ne 0) {
 
@@ -57,10 +25,15 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 Write-Host ""
-Write-Host "==========================================" -ForegroundColor Green
-Write-Host "Deployment Complete!" -ForegroundColor Green
-Write-Host "==========================================" -ForegroundColor Green
+Write-Host "Waiting 5 seconds for GitHub Pages..."
+Start-Sleep -Seconds 5
+
+#--------------------------------------------------
+# Open browser
+#--------------------------------------------------
+
+& .\test.ps1
+
 Write-Host ""
-Write-Host "GitHub Pages:"
-Write-Host "https://ttcq.github.io/panos/?v=$([DateTime]::Now.Ticks)" -ForegroundColor Cyan
+Write-Host "Ready to test on your phone." -ForegroundColor Green
 Write-Host ""
