@@ -137,7 +137,55 @@ fetch("data/panos.json")
         alert("Unable to load panos.json");
 
     });
+//----------------------------------------------------
+// Motion Button
+//----------------------------------------------------
 
+async function toggleMotion() {
+
+    const button = document.getElementById("motionButton");
+
+    if (!viewer.isOrientationSupported()) {
+
+        alert("This device or browser does not support motion control.");
+
+        button.classList.remove("inactive");
+        button.classList.add("error");
+
+        return;
+    }
+
+    if (viewer.isOrientationActive()) {
+
+        viewer.stopOrientation();
+
+        button.classList.remove("active");
+        button.classList.add("inactive");
+
+        return;
+    }
+
+    // iPhone requires explicit permission
+    if (typeof DeviceOrientationEvent !== "undefined" &&
+        typeof DeviceOrientationEvent.requestPermission === "function") {
+
+        const result = await DeviceOrientationEvent.requestPermission();
+
+        if (result !== "granted") {
+
+            button.classList.remove("inactive");
+            button.classList.add("error");
+
+            return;
+        }
+    }
+
+    viewer.startOrientation();
+
+    button.classList.remove("inactive");
+    button.classList.add("active");
+
+}
 //----------------------------------------------------
 // Start Exploring
 //----------------------------------------------------
@@ -161,5 +209,16 @@ document
     .addEventListener("click", () => {
 
         toggleInfoPanel();
+
+    });
+    //----------------------------------------------------
+// Motion Button
+//----------------------------------------------------
+
+document
+    .getElementById("motionButton")
+    .addEventListener("click", () => {
+
+        toggleMotion().catch(console.error);
 
     });

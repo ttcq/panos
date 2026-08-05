@@ -299,8 +299,30 @@ body {
     margin-bottom: 18px;
 
 }
+#motionButton {
+
+    transition: all .25s ease;
+
+}
+
 #motionButton.inactive {
 
-    opacity: .55;
+    opacity: .45;
+
+}
+
+#motionButton.active {
+
+    background: rgba(0,160,0,.80);
+
+    opacity: 1;
+
+}
+
+#motionButton.error {
+
+    background: rgba(180,0,0,.80);
+
+    opacity: 1;
 
 }
