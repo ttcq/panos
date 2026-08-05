@@ -1,0 +1,1 @@
+Copy viewer.html into project. Rename your current viewer page to viewer_real_backup.html or merge manually. This starter package provides gallery only.
