@@ -1,5 +1,6 @@
 {
   "campLight01": {
+    "type": "panorama",
     "title": "Camp Lantern #A",
     "image": "images/campLight01.jpg",
     "location": "Camp High Sierra",
@@ -13,6 +14,7 @@
   },
 
   "campLight02": {
+    "type": "panorama",
     "title": "Camp Lantern #B",
     "image": "images/campLight02.jpg",
     "location": "Camp High Sierra",
@@ -25,14 +27,15 @@
     "yaw": 0
   },
   "HorseshoeLake": {
-  "title": "Calvary Family at Horseshoe Lake",
-  "image": "images/DJI_0221.jpg",
-  "location": "Horseshoe Lake",
-  "region": "Mammoth Lakes, California",
-  "camera": "Insta360 X4",
-  "author": "Bob Peterson",
-  "hfov": 100,
-  "pitch": 0,
-  "yaw": 0
-}
+    "type": "photo",
+    "title": "Calvary Family at Horseshoe Lake",
+    "image": "images/DJI_0221.jpg",
+    "location": "Horseshoe Lake",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson",
+    "hfov": 100,
+    "pitch": 0,
+    "yaw": 0
+  }
 }

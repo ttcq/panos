@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panos Photo Viewer</title>
+<link rel="stylesheet" href="css/site.css?v=2">
+<link rel="stylesheet" href="css/photo.css?v=1">
+</head>
+
+<body>
+
+<div id="photoStage">
+  <img id="photoImage" alt="">
+</div>
+
+<div id="welcomeOverlay">
+  <div id="welcomeBox">
+    <div class="welcomeTip">
+      <div class="tipTitle">PHOTO</div>
+      Tap the image to view the full frame.
+    </div>
+    <hr class="welcomeDivider">
+    <h2 id="welcomeTitle">Loading...</h2>
+    <p id="welcomeLocation"></p>
+    <p id="welcomeRegion"></p>
+    <p id="welcomeCamera"></p>
+    <button id="startButton">Start Viewing</button>
+  </div>
+</div>
+
+<div id="toolbar">
+  <button id="infoButton" title="Information">i</button>
+</div>
+
+<div id="infoPanel">
+  <h2 id="panoTitle"></h2>
+  <div id="panoLocation"></div>
+  <div id="panoRegion"></div>
+  <div id="panoCamera"></div>
+</div>
+
+<script src="js/photo.js"></script>
+
+</body>
+</html>
