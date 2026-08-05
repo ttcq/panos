@@ -4,6 +4,7 @@
     "image": "images/campLight01.jpg",
     "location": "Camp High Sierra",
     "region": "Mammoth Lakes, California",
+    "captured": "2026-07-26",
     "camera": "Insta360 X4",
     "author": "Bob Peterson",
     "hfov": 100,
@@ -16,10 +17,22 @@
     "image": "images/campLight02.jpg",
     "location": "Camp High Sierra",
     "region": "Mammoth Lakes, California",
+    "captured": "2026-07-26",
     "camera": "Insta360 X4",
     "author": "Bob Peterson",
     "hfov": 100,
     "pitch": 0,
     "yaw": 0
-  }
+  },
+  "HorseshoeLake": {
+  "title": "Horseshoe Lake",
+  "image": "images/DJI_0221.jpg",
+  "location": "Horseshoe Lake",
+  "region": "Mammoth Lakes, California",
+  "camera": "Insta360 X4",
+  "author": "Bob Peterson",
+  "hfov": 100,
+  "pitch": 0,
+  "yaw": 0
+}
 }
