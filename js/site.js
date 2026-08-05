@@ -1,7 +1,11 @@
 //====================================================
 // Panos Viewer
-// Version 1.2
+// Version 1.3
 //====================================================
+
+const APP_VERSION = "1.3";
+
+console.log("Panos Viewer", APP_VERSION);
 
 //----------------------------------------------------
 // Read requested panorama
@@ -19,12 +23,9 @@ if (!panoName) {
 // Global Variables
 //----------------------------------------------------
 
-let viewer;
+let viewer = null;
+let motion = null;
 let infoVisible = false;
-
-document
-    .getElementById("motionButton")
-    .classList.add("inactive");
 
 //----------------------------------------------------
 // Toggle Information Panel
@@ -41,11 +42,10 @@ function toggleInfoPanel() {
     } else {
         panel.classList.remove("visible");
     }
-
 }
 
 //----------------------------------------------------
-// Load Panorama Catalog
+// Initialize Viewer
 //----------------------------------------------------
 
 fetch("data/panos.json")
@@ -61,7 +61,6 @@ fetch("data/panos.json")
             alert("Unknown panorama: " + panoName);
 
             return;
-
         }
 
         //------------------------------------------------
@@ -103,7 +102,7 @@ fetch("data/panos.json")
             "📷 " + pano.camera;
 
         //------------------------------------------------
-        // Create Viewer
+        // Create Panorama Viewer
         //------------------------------------------------
 
         viewer = pannellum.viewer("panorama", {
@@ -128,6 +127,15 @@ fetch("data/panos.json")
 
         });
 
+        console.log("Viewer created.");
+//------------------------------------------------
+// Motion Controller
+//------------------------------------------------
+
+motion = new MotionController(
+    viewer,
+    document.getElementById("motionButton")
+);
     })
 
     .catch(error => {
@@ -137,55 +145,7 @@ fetch("data/panos.json")
         alert("Unable to load panos.json");
 
     });
-//----------------------------------------------------
-// Motion Button
-//----------------------------------------------------
 
-async function toggleMotion() {
-
-    const button = document.getElementById("motionButton");
-
-    if (!viewer.isOrientationSupported()) {
-
-        alert("This device or browser does not support motion control.");
-
-        button.classList.remove("inactive");
-        button.classList.add("error");
-
-        return;
-    }
-
-    if (viewer.isOrientationActive()) {
-
-        viewer.stopOrientation();
-
-        button.classList.remove("active");
-        button.classList.add("inactive");
-
-        return;
-    }
-
-    // iPhone requires explicit permission
-    if (typeof DeviceOrientationEvent !== "undefined" &&
-        typeof DeviceOrientationEvent.requestPermission === "function") {
-
-        const result = await DeviceOrientationEvent.requestPermission();
-
-        if (result !== "granted") {
-
-            button.classList.remove("inactive");
-            button.classList.add("error");
-
-            return;
-        }
-    }
-
-    viewer.startOrientation();
-
-    button.classList.remove("inactive");
-    button.classList.add("active");
-
-}
 //----------------------------------------------------
 // Start Exploring
 //----------------------------------------------------
@@ -211,14 +171,18 @@ document
         toggleInfoPanel();
 
     });
-    //----------------------------------------------------
+
+//----------------------------------------------------
 // Motion Button
 //----------------------------------------------------
 
 document
     .getElementById("motionButton")
-    .addEventListener("click", () => {
+    .addEventListener("click", async () => {
 
-        toggleMotion().catch(console.error);
+        if (!motion)
+            return;
+
+        await motion.toggle();
 
     });
