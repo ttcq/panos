@@ -1,59 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Panos</title>
 
-    <link rel="stylesheet" href="css/site.css">
     <link rel="stylesheet" href="css/pannellum.css">
+    <link rel="stylesheet" href="css/site.css">
+
 </head>
 
 <body>
 
-<div id="panorama"></div>
-<div id="welcomeOverlay">
+    <!-- Panorama -->
 
-    <div id="welcomeBox">
+    <div id="panorama"></div>
 
-       <h2 id="welcomeTitle">Loading...</h2>
+    <!-- Welcome Screen -->
 
-<p id="welcomeLocation"></p>
+    <div id="welcomeOverlay">
 
-<p id="welcomeRegion"></p>
+        <div id="welcomeBox">
 
-<p id="welcomeCamera"></p>
+            <div class="welcomeTip">
 
+                <div class="tipTitle">
+                    📱 TIP
+                </div>
 
+                Best viewed in
+                <strong>landscape mode</strong>.
 
-        <p>📱 Best Viewed in Landscape.</p>
+            </div>
 
-        <button id="startButton">
-            Start Exploring
-        </button>
+            <hr class="welcomeDivider">
+
+            <h2 id="welcomeTitle">Loading...</h2>
+
+            <p id="welcomeLocation"></p>
+
+            <p id="welcomeRegion"></p>
+
+            <p id="welcomeCamera"></p>
+
+            <button id="startButton">
+                Start Exploring
+            </button>
+
+        </div>
 
     </div>
 
+ <!-- Toolbar -->
+
+<div id="toolbar">
+
+    <button id="motionButton" title="Motion Control">
+        🧭
+    </button>
+
+    <button id="infoButton" title="Information">
+        ⓘ
+    </button>
+
 </div>
-<div id="infoPanel">
 
-    <h2 id="panoTitle">Loading...</h2>
+    <!-- Information Panel -->
 
-    <div id="panoLocation"></div>
+    <div id="infoPanel">
 
-    <div id="panoRegion"></div>
+        <h2 id="panoTitle"></h2>
 
-    <div id="panoCamera"></div>
+        <div id="panoLocation"></div>
 
-</div>
+        <div id="panoRegion"></div>
 
-<button id="infoButton">
-    ⓘ
-</button>
+        <div id="panoCamera"></div>
 
-<script src="js/pannellum.js"></script>
-<script src="js/site.js"></script>
+    </div>
+
+    <script src="js/pannellum.js"></script>
+    <script src="js/site.js"></script>
 
 </body>
+
 </html>
