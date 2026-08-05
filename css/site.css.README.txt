@@ -1,0 +1,2 @@
+Use your existing site.css from Version 1.3.
+Only remove any MotionController-specific rules if desired; the current CSS is compatible with this site.js.

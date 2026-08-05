@@ -1,0 +1,5 @@
+/* Version 1.4 additions */
+
+#motionButton.inactive { opacity:.45; }
+#motionButton.active { background:rgba(0,160,0,.8); opacity:1; }
+#motionButton.error { background:rgba(180,0,0,.8); opacity:1; }

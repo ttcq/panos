@@ -1,188 +1,98 @@
 //====================================================
 // Panos Viewer
-// Version 1.3
+// Version 1.4
 //====================================================
 
-const APP_VERSION = "1.3";
+const APP_VERSION="1.4";
+const params=new URLSearchParams(location.search);
+const panoName=params.get("p")||"campLight01";
 
-console.log("Panos Viewer", APP_VERSION);
+let viewer=null;
+let motionEnabled=false;
+let infoVisible=false;
 
-//----------------------------------------------------
-// Read requested panorama
-//----------------------------------------------------
+const el={
+ welcomeOverlay:document.getElementById("welcomeOverlay"),
+ welcomeTitle:document.getElementById("welcomeTitle"),
+ welcomeLocation:document.getElementById("welcomeLocation"),
+ welcomeRegion:document.getElementById("welcomeRegion"),
+ welcomeCamera:document.getElementById("welcomeCamera"),
+ startButton:document.getElementById("startButton"),
+ motionButton:document.getElementById("motionButton"),
+ infoButton:document.getElementById("infoButton"),
+ infoPanel:document.getElementById("infoPanel"),
+ panoTitle:document.getElementById("panoTitle"),
+ panoLocation:document.getElementById("panoLocation"),
+ panoRegion:document.getElementById("panoRegion"),
+ panoCamera:document.getElementById("panoCamera")
+};
 
-const params = new URLSearchParams(window.location.search);
-
-let panoName = params.get("p");
-
-if (!panoName) {
-    panoName = "campLight01";
+function setMotionState(state){
+ el.motionButton.classList.remove("inactive","active","error");
+ el.motionButton.classList.add(state);
 }
 
-//----------------------------------------------------
-// Global Variables
-//----------------------------------------------------
-
-let viewer = null;
-let motion = null;
-let infoVisible = false;
-
-//----------------------------------------------------
-// Toggle Information Panel
-//----------------------------------------------------
-
-function toggleInfoPanel() {
-
-    const panel = document.getElementById("infoPanel");
-
-    infoVisible = !infoVisible;
-
-    if (infoVisible) {
-        panel.classList.add("visible");
-    } else {
-        panel.classList.remove("visible");
-    }
+function toggleInfo(){
+ infoVisible=!infoVisible;
+ el.infoPanel.classList.toggle("visible",infoVisible);
 }
 
-//----------------------------------------------------
-// Initialize Viewer
-//----------------------------------------------------
+async function toggleMotion(){
+ if(!viewer)return;
+ if(!viewer.isOrientationSupported||!viewer.isOrientationSupported()){
+   setMotionState("error");
+   return;
+ }
+ if(motionEnabled){
+   viewer.stopOrientation();
+   motionEnabled=false;
+   setMotionState("inactive");
+   return;
+ }
+ try{
+   viewer.startOrientation();
+   motionEnabled=true;
+   setMotionState("active");
+ }catch(e){
+   console.error(e);
+   setMotionState("error");
+ }
+}
 
 fetch("data/panos.json")
+.then(r=>r.json())
+.then(catalog=>{
+ const p=catalog[panoName];
+ if(!p){alert("Unknown panorama");return;}
+ document.title=p.title;
+ el.welcomeTitle.textContent=p.title;
+ el.welcomeLocation.textContent="📍 "+p.location;
+ el.welcomeRegion.textContent=p.region;
+ el.welcomeCamera.textContent="📷 "+p.camera;
+ el.panoTitle.textContent=p.title;
+ el.panoLocation.textContent="📍 "+p.location;
+ el.panoRegion.textContent=p.region;
+ el.panoCamera.textContent="📷 "+p.camera;
 
-    .then(response => response.json())
+ viewer=pannellum.viewer("panorama",{
+   type:"equirectangular",
+   panorama:p.image,
+   autoLoad:true,
+   compass:true,
+   showZoomCtrl:true,
+   showFullscreenCtrl:true,
+   hfov:p.hfov,
+   pitch:p.pitch,
+   yaw:p.yaw
+ });
 
-    .then(catalog => {
+ setMotionState("inactive");
+});
 
-        const pano = catalog[panoName];
+el.startButton.addEventListener("click",async()=>{
+ el.welcomeOverlay.classList.add("hidden");
+ await toggleMotion();
+});
 
-        if (!pano) {
-
-            alert("Unknown panorama: " + panoName);
-
-            return;
-        }
-
-        //------------------------------------------------
-        // Browser Title
-        //------------------------------------------------
-
-        document.title = pano.title;
-
-        //------------------------------------------------
-        // Welcome Screen
-        //------------------------------------------------
-
-        document.getElementById("welcomeTitle").textContent =
-            pano.title;
-
-        document.getElementById("welcomeLocation").textContent =
-            "📍 " + pano.location;
-
-        document.getElementById("welcomeRegion").textContent =
-            pano.region;
-
-        document.getElementById("welcomeCamera").textContent =
-            "📷 " + pano.camera;
-
-        //------------------------------------------------
-        // Information Panel
-        //------------------------------------------------
-
-        document.getElementById("panoTitle").textContent =
-            pano.title;
-
-        document.getElementById("panoLocation").textContent =
-            "📍 " + pano.location;
-
-        document.getElementById("panoRegion").textContent =
-            pano.region;
-
-        document.getElementById("panoCamera").textContent =
-            "📷 " + pano.camera;
-
-        //------------------------------------------------
-        // Create Panorama Viewer
-        //------------------------------------------------
-
-        viewer = pannellum.viewer("panorama", {
-
-            type: "equirectangular",
-
-            panorama: pano.image,
-
-            autoLoad: true,
-
-            compass: true,
-
-            showZoomCtrl: true,
-
-            showFullscreenCtrl: true,
-
-            hfov: pano.hfov,
-
-            pitch: pano.pitch,
-
-            yaw: pano.yaw
-
-        });
-
-        console.log("Viewer created.");
-//------------------------------------------------
-// Motion Controller
-//------------------------------------------------
-
-motion = new MotionController(
-    viewer,
-    document.getElementById("motionButton")
-);
-    })
-
-    .catch(error => {
-
-        console.error(error);
-
-        alert("Unable to load panos.json");
-
-    });
-
-//----------------------------------------------------
-// Start Exploring
-//----------------------------------------------------
-
-document
-    .getElementById("startButton")
-    .addEventListener("click", () => {
-
-        document
-            .getElementById("welcomeOverlay")
-            .classList.add("hidden");
-
-    });
-
-//----------------------------------------------------
-// Information Button
-//----------------------------------------------------
-
-document
-    .getElementById("infoButton")
-    .addEventListener("click", () => {
-
-        toggleInfoPanel();
-
-    });
-
-//----------------------------------------------------
-// Motion Button
-//----------------------------------------------------
-
-document
-    .getElementById("motionButton")
-    .addEventListener("click", async () => {
-
-        if (!motion)
-            return;
-
-        await motion.toggle();
-
-    });
+el.motionButton.addEventListener("click",toggleMotion);
+el.infoButton.addEventListener("click",toggleInfo);
