@@ -38,4 +38,74 @@
     "pitch": 0,
     "yaw": 0
   }
+  ,
+  "0220": {
+    "type": "photo",
+    "title": "Family Campers on Horshshoe Lake Beach",
+    "image": "images/DJI_0220.jpg",
+    "location": "Horseshoe Lake",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson"
+  },
+
+  "0234": {
+    "type": "photo",
+    "title": "Family Campers from behind",
+    "image": "images/DJI_0234.jpg",
+    "location": "Horseshoe Lake",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson"
+  },
+
+  "0237": {
+    "type": "photo",
+    "title": "Family Campers on Beach #A",
+    "image": "images/DJI_0237.jpg",
+    "location": "Horseshoe Lake",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson"
+  },
+
+  "0238": {
+    "type": "photo",
+    "title": "Family Campers on Beach #B",
+    "image": "images/DJI_0238.jpg",
+    "location": "Horseshoe Lake",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson"
+  },
+
+  "0239": {
+    "type": "photo",
+    "title": "Family Campers on Beach Waiving #C,
+    "image": "images/DJI_0239.jpg",
+    "location": "Horseshoe Lake",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson"
+  },
+
+  "0240": {
+    "type": "photo",
+    "title": "Family Campers on Beach #D",
+    "image": "images/DJI_0240.jpg",
+    "location": "Horseshoe Lake",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson"
+  },
+
+  "0243": {
+    "type": "photo",
+    "title": "Family Campers on Beach from above #E",
+    "image": "images/DJI_0243.jpg",
+    "location": "Horseshoe Lake",
+    "region": "Mammoth Lakes, California",
+    "camera": "Insta360 X4",
+    "author": "Bob Peterson"
+  }
 }
