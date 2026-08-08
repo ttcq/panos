@@ -2,5 +2,8 @@ body{font-family:Arial,sans-serif;background:#111;color:#eee;max-width:900px;mar
 .subtitle{color:#bbb}
 .location{margin-top:30px;margin-bottom:0}
 .region{color:#999;margin-bottom:10px}
-a.pano{display:block;padding:8px 0;color:#7fc7ff;text-decoration:none}
-a.pano:hover{text-decoration:underline}
+a.media{display:flex;align-items:center;gap:10px;padding:8px 0;color:#7fc7ff;text-decoration:none}
+a.media span{min-width:82px;color:#111;background:#7fc7ff;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:bold;text-align:center}
+a.media.photo{color:#a7e3a1}
+a.media.photo span{background:#a7e3a1}
+a.media:hover{text-decoration:underline}
