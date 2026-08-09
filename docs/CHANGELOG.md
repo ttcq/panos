@@ -1,5 +1,21 @@
 Explore Changelog
 
+Sprint 2.2B — Typography
+
+Changed
+    ✓ Home Page (index.html / gallery.css)
+        Replaced fixed-pixel font sizes with rem-based,
+        clamp() driven fluid typography (title, subtitle,
+        location headings, region labels, media links,
+        and the media-type badge).
+        Sizes scale smoothly between small phones and
+        desktop instead of jumping at breakpoints, and
+        respect the user's browser font-size setting
+        since they are rem-based rather than px-based.
+        Added line-height for readability on small,
+        high-density screens.
+        Visual style (colors, weights, layout) unchanged.
+
 Sprint 2.2A — Video Viewer
 
 Added
