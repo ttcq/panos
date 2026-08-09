@@ -1,17 +1,16 @@
 //====================================================
 // Panos Viewer
-// Version 1.4
+// Version 2.0
 //====================================================
 
-const APP_VERSION="1.4";
-const params=new URLSearchParams(location.search);
-const panoName=params.get("p")||"campLight01";
+const params = new URLSearchParams(location.search);
+const panoId = params.get("p");
 
-let viewer=null;
-let motionEnabled=false;
-let infoVisible=false;
+let viewer = null;
+let motionEnabled = false;
+let infoVisible = false;
 
-const el={
+const el = {
  welcomeOverlay:document.getElementById("welcomeOverlay"),
  welcomeTitle:document.getElementById("welcomeTitle"),
  welcomeLocation:document.getElementById("welcomeLocation"),
@@ -59,20 +58,19 @@ async function toggleMotion(){
  }
 }
 
-fetch("data/panos.json")
-.then(r=>r.json())
-.then(catalog=>{
- const p=catalog[panoName];
- if(!p){alert("Unknown panorama");return;}
+MediaStore.load().then(()=>{
+ const p=MediaStore.get(panoId);
+ if(!p||p.type!=="panorama"){alert("Unknown panorama");return;}
+
  document.title=p.title;
  el.welcomeTitle.textContent=p.title;
- el.welcomeLocation.textContent="📍 "+p.location;
- el.welcomeRegion.textContent=p.region;
+ el.welcomeLocation.textContent="📍 "+p.location.name;
+ el.welcomeRegion.textContent=p.location.region;
  el.welcomeCamera.textContent="📷 "+p.camera;
  el.panoTitle.textContent=p.title;
- el.panoLocation.textContent="📍 "+p.location;
- el.panoRegion.textContent=p.region;
- el.panoCamera.textContent="📷 "+p.camera;
+ el.panoLocation.textContent="📍 "+p.location.name;
+ el.panoRegion.textContent=p.location.region;
+ el.panoCamera.textContent=p.camera;
 
  viewer=pannellum.viewer("panorama",{
    type:"equirectangular",
@@ -87,6 +85,9 @@ fetch("data/panos.json")
  });
 
  setMotionState("inactive");
+}).catch(e=>{
+ console.error(e);
+ alert("Unable to load media catalog.");
 });
 
 el.startButton.addEventListener("click",async()=>{

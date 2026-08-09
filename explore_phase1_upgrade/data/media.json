@@ -1,0 +1,112 @@
+{
+  "schema": {
+    "name": "Explore Media",
+    "version": "2.0"
+  },
+  "locations": {
+    "campHighSierra": {
+      "name": "Camp High Sierra",
+      "region": "Mammoth Lakes, California",
+      "description": "",
+      "coverImage": "images/campLight01.jpg",
+      "items": [
+        {
+          "id": "campLanternA",
+          "type": "panorama",
+          "title": "Camp Lantern #A",
+          "order": 100,
+          "image": "images/campLight01.jpg",
+          "camera": "Insta360 X4",
+          "author": "Bob Peterson",
+          "hfov": 100,
+          "pitch": 0,
+          "yaw": 0
+        },
+        {
+          "id": "campLanternB",
+          "type": "panorama",
+          "title": "Camp Lantern #B",
+          "order": 200,
+          "image": "images/campLight02.jpg",
+          "camera": "Insta360 X4",
+          "author": "Bob Peterson",
+          "hfov": 100,
+          "pitch": 0,
+          "yaw": 0
+        }
+      ]
+    },
+    "horseshoeLake": {
+      "name": "Horseshoe Lake",
+      "region": "Mammoth Lakes, California",
+      "description": "",
+      "coverImage": "images/DJI_0221.jpg",
+      "items": [
+        {
+          "id": "panorama",
+          "type": "panorama",
+          "title": "Explore 360\u00b0 Panorama",
+          "order": 100,
+          "image": "images/DJI_0221.jpg",
+          "camera": "Insta360 X4",
+          "author": "Bob Peterson",
+          "hfov": 100,
+          "pitch": 0,
+          "yaw": 0
+        },
+        {
+          "id": "familyCampers",
+          "type": "album",
+          "title": "Family Campers",
+          "order": 200,
+          "camera": "Insta360 X4",
+          "author": "Bob Peterson",
+          "photos": [
+            {
+              "id": "0220",
+              "title": "Family Campers on Horseshoe Lake Beach",
+              "image": "images/DJI_0220.jpg"
+            },
+            {
+              "id": "0234",
+              "title": "Family Campers from Behind",
+              "image": "images/DJI_0234.jpg"
+            },
+            {
+              "id": "0237",
+              "title": "Family Campers on Beach A",
+              "image": "images/DJI_0237.jpg"
+            },
+            {
+              "id": "0238",
+              "title": "Family Campers on Beach B",
+              "image": "images/DJI_0238.jpg"
+            },
+            {
+              "id": "0239",
+              "title": "Family Campers Waving",
+              "image": "images/DJI_0239.jpg"
+            },
+            {
+              "id": "0240",
+              "title": "Family Campers on Beach D",
+              "image": "images/DJI_0240.jpg"
+            },
+            {
+              "id": "0243",
+              "title": "Family Campers from Above",
+              "image": "images/DJI_0243.jpg"
+            }
+          ]
+        },
+        {
+          "id": "familyVideo",
+          "type": "video",
+          "title": "Family Camp Video",
+          "order": 300,
+          "youtubeId": "REPLACE_ME"
+        }
+      ]
+    }
+  }
+}

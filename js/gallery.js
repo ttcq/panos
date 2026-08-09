@@ -1,44 +1,42 @@
-fetch("data/panos.json")
-.then(r=>r.json())
-.then(data=>{
- const gallery=document.getElementById("gallery");
- const groups={};
- for(const [id,p] of Object.entries(data)){
-   if(!groups[p.location]) groups[p.location]={region:p.region,items:[]};
-   groups[p.location].items.push({
-     id,
-     title:p.title,
-     type:p.type||"panorama"
-   });
- }
- Object.keys(groups).sort().forEach(loc=>{
-   const h=document.createElement("h2");
-   h.className="location";
-   h.textContent=loc;
-   gallery.appendChild(h);
+MediaStore.load().then(({ data }) => {
+  const g = document.getElementById("gallery");
+  g.innerHTML = "";
 
-   const r=document.createElement("div");
-   r.className="region";
-   r.textContent=groups[loc].region;
-   gallery.appendChild(r);
+  Object.entries(data.locations)
+    .sort((a, b) => a[1].name.localeCompare(b[1].name))
+    .forEach(([locationKey, loc]) => {
+      const h = document.createElement("h2");
+      h.className = "location";
+      h.textContent = loc.name;
+      g.appendChild(h);
 
-   groups[loc].items.sort((a,b)=>a.title.localeCompare(b.title));
-   groups[loc].items.forEach(item=>{
-      const a=document.createElement("a");
-      const isPhoto=item.type==="photo";
-      a.className="media "+(isPhoto?"photo":"pano");
-      a.href=(isPhoto?"photo.html?m=":"viewer.html?p=")+encodeURIComponent(item.id);
+      const rg = document.createElement("div");
+      rg.className = "region";
+      rg.textContent = loc.region;
+      g.appendChild(rg);
 
-      const badge=document.createElement("span");
-      badge.textContent=isPhoto?"Photo":"Panorama";
-      a.appendChild(badge);
-      a.appendChild(document.createTextNode(item.title));
+      loc.items
+        .sort((a, b) => a.order - b.order)
+        .forEach(item => {
+          const id = `${locationKey}.${item.id}`;
+          const a = document.createElement("a");
+          a.className = "media";
 
-      gallery.appendChild(a);
-   });
- });
-})
-.catch(err=>{
- document.getElementById("gallery").textContent="Unable to load media catalog.";
- console.error(err);
+          if (item.type === "panorama") {
+            a.href = "viewer.html?p=" + encodeURIComponent(id);
+            a.textContent = "🌐 " + item.title;
+          } else if (item.type === "album") {
+            a.href = "album.html?p=" + encodeURIComponent(id);
+            a.textContent = `📸 ${item.title} (${item.photos.length})`;
+          } else if (item.type === "video") {
+            a.href = "video.html?p=" + encodeURIComponent(id);
+            a.textContent = "🎬 " + item.title;
+          }
+
+          g.appendChild(a);
+        });
+    });
+}).catch(e => {
+  document.getElementById("gallery").textContent = "Unable to load media catalog.";
+  console.error(e);
 });

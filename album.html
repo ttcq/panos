@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Viewer</title>
+    <link rel="stylesheet" href="css/album.css?v=1">
+</head>
+<body>
+
+    <div id="photoContainer">
+        <img id="photoImage">
+    </div>
+
+    <button id="prevButton" class="nav prev" title="Previous">◀</button>
+    <button id="nextButton" class="nav next" title="Next">▶</button>
+
+    <div id="toolbar">
+        <a id="backButton" href="index.html" title="Back to Gallery">←</a>
+        <button id="infoButton" title="Information">ⓘ</button>
+    </div>
+
+    <div id="infoPanel">
+        <h2 id="albumTitle"></h2>
+        <div id="albumLocation"></div>
+        <div id="albumRegion"></div>
+        <div id="albumCamera"></div>
+        <div id="photoTitle"></div>
+        <div id="photoCount"></div>
+    </div>
+
+    <script src="https://unpkg.com/@panzoom/panzoom/dist/panzoom.min.js"></script>
+    <script src="js/mediaStore.js?v=1"></script>
+    <script src="js/album.js?v=1"></script>
+
+</body>
+</html>
