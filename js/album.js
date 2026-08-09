@@ -23,6 +23,7 @@ const el = {
 function toggleInfo() {
   infoVisible = !infoVisible;
   el.infoPanel.classList.toggle("visible", infoVisible);
+  document.body.classList.toggle("info-open", infoVisible);
 }
 
 function show() {
@@ -50,7 +51,7 @@ MediaStore.load().then(() => {
   el.albumRegion.textContent = album.location.region;
   el.albumCamera.textContent = "📷 " + album.camera;
 
-  pz = Panzoom(el.image, { maxScale: 8, minScale: 1, contain: "inside" });
+  pz = Panzoom(el.image, { maxScale: 8, minScale: 1, canvas: true });
   el.image.parentElement.addEventListener("wheel", pz.zoomWithWheel);
 
   show();
