@@ -33,6 +33,13 @@
           "hfov": 100,
           "pitch": 0,
           "yaw": 0
+        },
+        {
+          "id": "familyVideo",
+          "type": "video",
+          "title": "Family Camp Kids Songs Video",
+          "order": 300,
+          "youtubeId": "y1xJm2Em1zg"
         }
       ]
     },
@@ -98,13 +105,6 @@
               "image": "images/DJI_0243.jpg"
             }
           ]
-        },
-        {
-          "id": "familyVideo",
-          "type": "video",
-          "title": "Family Camp Video",
-          "order": 300,
-          "youtubeId": "REPLACE_ME"
         }
       ]
     }

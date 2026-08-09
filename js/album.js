@@ -27,13 +27,13 @@ function toggleInfo() {
 
 function show() {
   const photo = photos[idx];
-  el.image.src = photo.image;
   document.title = photo.title;
   el.photoTitle.textContent = photo.title;
   el.photoCount.textContent = `Photo ${idx + 1} of ${photos.length}`;
   el.prevButton.disabled = idx === 0;
   el.nextButton.disabled = idx === photos.length - 1;
-  pz.reset();
+  el.image.onload = () => pz.reset();
+  el.image.src = photo.image;
 }
 
 MediaStore.load().then(() => {
@@ -50,7 +50,7 @@ MediaStore.load().then(() => {
   el.albumRegion.textContent = album.location.region;
   el.albumCamera.textContent = "📷 " + album.camera;
 
-  pz = Panzoom(el.image, { maxScale: 8, minScale: 1, contain: "outside" });
+  pz = Panzoom(el.image, { maxScale: 8, minScale: 1, contain: "inside" });
   el.image.parentElement.addEventListener("wheel", pz.zoomWithWheel);
 
   show();

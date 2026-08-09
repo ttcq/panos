@@ -1,5 +1,19 @@
 Explore Changelog
 
+Sprint 2.2A — Video Viewer
+
+Added
+    ✓ Video Viewer
+        video.html, video.js, css/video.css
+        Reads media through mediaStore.js only.
+        Builds the YouTube iframe dynamically after load
+        (not hardcoded in video.html).
+        Provider lookup (videoProviders) isolates YouTube-specific
+        embed logic so local/vimeo providers can be added later
+        without touching viewer code.
+        Displays "Video not found." on an invalid or non-video ID
+        instead of throwing.
+
 Sprint 2.1A — Media Architecture Migration
 
 Added
