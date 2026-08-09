@@ -39,3 +39,4 @@ On mobile devices, pinch gestures frequently begin with one finger in the surrou
 Using `canvas: true` causes Panzoom to attach pointer listeners to the full viewport container, allowing pinch gestures to begin anywhere within the viewer.
 
 This is required for reliable mobile pinch-to-zoom.
+------

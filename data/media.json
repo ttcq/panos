@@ -53,11 +53,11 @@
           "id": "panorama",
           "type": "panorama",
           "title": "Explore 360\u00b0 Panorama",
-          "order": 100,
+          "order": 200,
           "image": "images/DJI_0221.jpg",
           "camera": "Insta360 X4",
           "author": "Bob Peterson",
-          "hfov": 100,
+          "hfov": 200,
           "pitch": 0,
           "yaw": 0
         },
@@ -65,7 +65,7 @@
           "id": "familyCampers",
           "type": "album",
           "title": "Family Campers",
-          "order": 200,
+          "order": 100,
           "camera": "Insta360 X4",
           "author": "Bob Peterson",
           "photos": [

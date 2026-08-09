@@ -25,8 +25,7 @@ html, body {
 
 .nav {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: max(20px, env(safe-area-inset-bottom) + 12px);
     width: 48px;
     height: 48px;
     border: none;
@@ -41,6 +40,12 @@ html, body {
 
 .nav.prev { left: 16px; }
 .nav.next { right: 16px; }
+
+body.info-open .nav {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
 
 .nav:disabled {
     opacity: .3;
